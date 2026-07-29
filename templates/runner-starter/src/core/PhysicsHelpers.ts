@@ -63,10 +63,7 @@ export function velocityFromAngle(angleRad: number, power: number): { vx: number
 }
 
 /** Ángulo (radianes) desde un punto de origen hacia un puntero/objetivo — para apuntar. */
-export function angleBetween(
-    from: { x: number; y: number },
-    to: { x: number; y: number }
-): number {
+export function angleBetween(from: { x: number; y: number }, to: { x: number; y: number }): number {
     return Math.atan2(to.y - from.y, to.x - from.x);
 }
 

@@ -2,6 +2,20 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.5.1] — Fix: formato de Prettier fallaba en CI
+
+### Corregido
+- `.prettierignore` añadido a los 4 templates y al showcase (excluye
+  `node_modules`, `dist`, `package-lock.json`, `test-results`,
+  `playwright-report`) — antes `prettier --check .` intentaba formatear
+  `package-lock.json` y fallaba.
+- Se corrió `prettier --write .` sobre el árbol completo (no solo
+  `src/**/*.ts`) en todos los templates: quedaban sin formatear
+  `eslint.config.js`, `index.html`, `public/style.css`, y varios módulos
+  de `core/` agregados después de la última pasada de formato
+  (`GridUtils.ts`, `PhysicsHelpers.ts`, `PerformanceMonitor.ts`,
+  `Accessibility.ts`, `UIOverlays.ts`, `tests/e2e/smoke.spec.ts`).
+
 ## [0.5.0] — Cobertura explícita de géneros
 
 ### Añadido

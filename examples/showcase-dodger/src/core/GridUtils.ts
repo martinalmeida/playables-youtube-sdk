@@ -109,7 +109,11 @@ export function findPathBFS(
     return null;
 }
 
-function reconstructPath(cameFrom: Map<string, GridCoord>, current: GridCoord, start: GridCoord): GridCoord[] {
+function reconstructPath(
+    cameFrom: Map<string, GridCoord>,
+    current: GridCoord,
+    start: GridCoord
+): GridCoord[] {
     const path: GridCoord[] = [current];
     let node = current;
 

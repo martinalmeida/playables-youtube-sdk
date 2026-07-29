@@ -29,7 +29,7 @@ export function warnIfBelowMinTouchTarget(width: number, height: number, context
     if (width < MIN_TOUCH_TARGET_PX || height < MIN_TOUCH_TARGET_PX) {
         console.warn(
             `[Accessibility] Elemento interactivo ${context} mide ${width}x${height}px, ` +
-            `por debajo del mínimo recomendado de ${MIN_TOUCH_TARGET_PX}x${MIN_TOUCH_TARGET_PX}px.`
+                `por debajo del mínimo recomendado de ${MIN_TOUCH_TARGET_PX}x${MIN_TOUCH_TARGET_PX}px.`
         );
     }
 }

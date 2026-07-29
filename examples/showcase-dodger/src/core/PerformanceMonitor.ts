@@ -40,7 +40,8 @@ class PerformanceMonitorImpl {
 
     private evaluate(): void {
         const avg = this.samples.reduce((sum, v) => sum + v, 0) / this.samples.length;
-        const next: QualityLevel = avg < LOW_THRESHOLD_FPS ? 'low' : avg < MEDIUM_THRESHOLD_FPS ? 'medium' : 'high';
+        const next: QualityLevel =
+            avg < LOW_THRESHOLD_FPS ? 'low' : avg < MEDIUM_THRESHOLD_FPS ? 'medium' : 'high';
 
         if (next !== this.currentQuality) {
             this.currentQuality = next;

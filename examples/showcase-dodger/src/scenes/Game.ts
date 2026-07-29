@@ -74,7 +74,12 @@ export class Game extends Phaser.Scene {
         ]);
 
         // Texturas procedurales — sin archivos de imagen (ShapeSprites).
-        ShapeSprites.circle(this, 'meteor', { radius: 22, color: 0x8a8f9e, strokeColor: 0x555b6e, strokeWidth: 3 });
+        ShapeSprites.circle(this, 'meteor', {
+            radius: 22,
+            color: 0x8a8f9e,
+            strokeColor: 0x555b6e,
+            strokeWidth: 3
+        });
         ShapeSprites.star(this, 'coin-star', { radius: 16, color: A11Y_PALETTE.warning });
         ShapeSprites.circle(this, 'player-ship', { radius: 20, color: A11Y_PALETTE.accent });
 
@@ -88,7 +93,11 @@ export class Game extends Phaser.Scene {
             color: '#ffffff'
         });
 
-        const pauseButton = new Button(this, width - 50, 40, '⏸', { width: 56, height: 56, fontSize: '22px' });
+        const pauseButton = new Button(this, width - 50, 40, '⏸', {
+            width: 56,
+            height: 56,
+            fontSize: '22px'
+        });
         warnIfBelowMinTouchTarget(56, 56, 'botón de pausa'); // cumple, pero demuestra el chequeo (Accessibility)
         pauseButton.on('pointerup', () => this.openPauseMenu());
 
@@ -128,13 +137,19 @@ export class Game extends Phaser.Scene {
         if (this.spawnTimer <= 0) {
             this.spawnFallingObject();
             this.spawnTimer =
-                Phaser.Math.Between(this.difficulty.spawnIntervalMinMs, this.difficulty.spawnIntervalMaxMs) / 1000;
+                Phaser.Math.Between(this.difficulty.spawnIntervalMinMs, this.difficulty.spawnIntervalMaxMs) /
+                1000;
         }
 
         this.falling = this.falling.filter((obj) => {
             obj.sprite.y += this.difficulty.fallSpeed * delta;
 
-            const dist = Phaser.Math.Distance.Between(obj.sprite.x, obj.sprite.y, this.player.x, this.player.y);
+            const dist = Phaser.Math.Distance.Between(
+                obj.sprite.x,
+                obj.sprite.y,
+                this.player.x,
+                this.player.y
+            );
             if (dist < 28) {
                 this.onOverlap(obj);
                 this.pool.release(obj);

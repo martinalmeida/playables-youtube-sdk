@@ -29,7 +29,8 @@ export default tseslint.config(
             'no-restricted-syntax': [
                 'error',
                 {
-                    selector: "CallExpression[callee.property.name='addEventListener'] Literal[value='visibilitychange']",
+                    selector:
+                        "CallExpression[callee.property.name='addEventListener'] Literal[value='visibilitychange']",
                     message:
                         'Prohibido: no escuches "visibilitychange", usa YouTubePlayables.setOnPause/setOnResume. Ver SKILLS/playables-sdk-integration/SKILL.md.'
                 }

@@ -1,7 +1,7 @@
 {
-  "id": "difficulty-1",
-  "fallSpeed": 220,
-  "spawnIntervalMinMs": 500,
-  "spawnIntervalMaxMs": 1000,
-  "coinChance": 0.25
+    "id": "difficulty-1",
+    "fallSpeed": 220,
+    "spawnIntervalMinMs": 500,
+    "spawnIntervalMaxMs": 1000,
+    "coinChance": 0.25
 }

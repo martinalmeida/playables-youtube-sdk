@@ -15,7 +15,11 @@ test('el juego carga, no tiene errores de consola, y el flujo del SDK se dispara
 
     page.on('console', (msg) => {
         if (msg.type() === 'error') consoleErrors.push(msg.text());
-        if (msg.text().includes('mockYtGame') || msg.text().includes('firstFrameReady') || msg.text().includes('gameReady')) {
+        if (
+            msg.text().includes('mockYtGame') ||
+            msg.text().includes('firstFrameReady') ||
+            msg.text().includes('gameReady')
+        ) {
             sdkLogs.push(msg.text());
         }
     });

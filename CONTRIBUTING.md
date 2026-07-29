@@ -18,6 +18,15 @@ concreto en `games/`. Si estás construyendo un juego, ve a `AGENTS.md`.
    `src/core/__tests__/` siguiendo el patrón de los existentes (mock de
    dependencias externas con `vi.mock`/`vi.stubGlobal`, no llamadas reales
    a red/DOM salvo que el test sea explícitamente de integración).
+4. **Corre `npm run format` (no solo sobre `src/`) después de agregar
+   cualquier archivo nuevo**, incluyendo configs (`eslint.config.js`,
+   `vite/*.mjs`, `index.html`, `public/*.css`) y tests (`tests/e2e/*`). El
+   `.prettierignore` de cada template ya excluye `node_modules`, `dist` y
+   `package-lock.json` — si agregas otro artefacto generado que no deba
+   formatearse, súmalo ahí. `npm run format:check` es lo que corre en CI;
+   si falla ahí y no en local, casi siempre es porque se formateó solo un
+   subconjunto de archivos en vez de correr `prettier --write .` sobre todo
+   el árbol.
 
 ## Antes de agregar una skill nueva
 

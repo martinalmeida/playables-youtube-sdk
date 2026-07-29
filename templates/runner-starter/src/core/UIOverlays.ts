@@ -30,9 +30,7 @@ export function showModal(scene: Phaser.Scene, options: ModalOptions): Phaser.Ga
 
     const container = scene.add.container(0, 0).setDepth(10000);
 
-    const overlay = scene.add
-        .rectangle(width / 2, height / 2, width, height, 0x000000, 0.6)
-        .setInteractive(); // bloquea clicks al fondo mientras el modal está abierto
+    const overlay = scene.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.6).setInteractive(); // bloquea clicks al fondo mientras el modal está abierto
 
     const panelWidth = Math.min(360, width * 0.85);
     const panelHeight = 220;
@@ -72,11 +70,17 @@ export function showModal(scene: Phaser.Scene, options: ModalOptions): Phaser.Ga
         });
         container.add(cancelBtn);
 
-        const confirmBtn = new Button(scene, width / 2 + 90, height / 2 + panelHeight / 2 - 40, confirmLabel, {
-            width: 140,
-            height: 48,
-            fontSize: '18px'
-        });
+        const confirmBtn = new Button(
+            scene,
+            width / 2 + 90,
+            height / 2 + panelHeight / 2 - 40,
+            confirmLabel,
+            {
+                width: 140,
+                height: 48,
+                fontSize: '18px'
+            }
+        );
         confirmBtn.on('pointerup', () => {
             close();
             onConfirm?.();
@@ -150,7 +154,10 @@ export interface PauseMenuOptions {
  * SKILLS/playables-sdk-integration/SKILL.md); esto es para la pausa que el
  * propio jugador activa manualmente dentro de una partida.
  */
-export function showPauseMenu(scene: Phaser.Scene, options: PauseMenuOptions = {}): Phaser.GameObjects.Container {
+export function showPauseMenu(
+    scene: Phaser.Scene,
+    options: PauseMenuOptions = {}
+): Phaser.GameObjects.Container {
     const { width, height } = scene.scale;
     const container = scene.add.container(0, 0).setDepth(10000);
 
@@ -158,16 +165,27 @@ export function showPauseMenu(scene: Phaser.Scene, options: PauseMenuOptions = {
     const panel = new Panel(scene, width / 2, height / 2, Math.min(320, width * 0.8), 260);
 
     const title = scene.add
-        .text(width / 2, height / 2 - 90, 'Pausa', { fontFamily: 'sans-serif', fontSize: '28px', color: '#ffffff' })
+        .text(width / 2, height / 2 - 90, 'Pausa', {
+            fontFamily: 'sans-serif',
+            fontSize: '28px',
+            color: '#ffffff'
+        })
         .setOrigin(0.5);
 
-    const resumeBtn = new Button(scene, width / 2, height / 2 - 20, Localization.t('play'), { width: 200, height: 56 });
+    const resumeBtn = new Button(scene, width / 2, height / 2 - 20, Localization.t('play'), {
+        width: 200,
+        height: 56
+    });
     resumeBtn.on('pointerup', () => {
         container.destroy();
         options.onResume?.();
     });
 
-    const muteBtn = new Button(scene, width / 2, height / 2 + 50, '🔊 / 🔇', { width: 200, height: 48, fontSize: '18px' });
+    const muteBtn = new Button(scene, width / 2, height / 2 + 50, '🔊 / 🔇', {
+        width: 200,
+        height: 48,
+        fontSize: '18px'
+    });
     let muted = false;
     muteBtn.on('pointerup', () => {
         muted = !muted;
