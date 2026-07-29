@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify-templates:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        template: [phaser-starter, puzzle-starter, runner-starter, idle-starter]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generar juego de prueba desde el template
+        run: node scripts/new-game.mjs --name ci-test-${{ matrix.template }} --template ${{ matrix.template }}
+      - name: Instalar dependencias
+        working-directory: games/ci-test-${{ matrix.template }}
+        run: npm install
+      - name: Formato (prettier --check)
+        working-directory: games/ci-test-${{ matrix.template }}
+        run: npm run format:check
+      - name: agent-check (typecheck + lint + test + validate + build)
+        working-directory: games/ci-test-${{ matrix.template }}
+        run: npm run agent-check
+      - name: Instalar navegador de Playwright
+        working-directory: games/ci-test-${{ matrix.template }}
+        run: npx playwright install --with-deps chromium
+      - name: Smoke test E2E (Playwright)
+        working-directory: games/ci-test-${{ matrix.template }}
+        run: npm run test:e2e
